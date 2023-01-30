@@ -6,19 +6,6 @@ class UsersController {
     const { name, email, birth, cep, address, city, state, password } =
       req.body;
 
-    if (
-      !name ||
-      !email ||
-      !birth ||
-      !cep ||
-      !address ||
-      !city ||
-      !state ||
-      !password
-    ) {
-      throw new AppError("COLOQUE TUDO");
-    }
-
     return res.json({ name, password });
   }
 }
