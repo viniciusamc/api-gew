@@ -18,9 +18,17 @@ exports.validateUser = [
     .isEmpty()
     .isInt()
     .isLength({ min: 8, max: 8 })
-    .withMessage("Preencha o CEP corretamente"),
-  check("address").not().isEmpty().withMessage("Preencha o endereço"),
-  check("state").not().isEmpty().withMessage("Preencha a cidade"),
+    .withMessage("CEP inválido. Por favor, preencha com um CEP válido."),
+  check("address")
+    .not()
+    .isEmpty()
+    .withMessage(
+      "Endereço inválido. Por favor, preencha com um endereço válido."
+    ),
+  check("state")
+    .not()
+    .isEmpty()
+    .withMessage("Cidade inválida. Por favor, preencha com uma cidade válida."),
   check("password")
     .not()
     .isEmpty()

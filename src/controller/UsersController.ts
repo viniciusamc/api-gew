@@ -18,13 +18,19 @@ class UsersController {
     } = req.body;
 
     if (password != confirmPassword) {
-      throw new ApiError("Senhas não conferem", 400);
+      throw new ApiError(
+        "Senha não confere. Por favor, preencha com uma senha válida",
+        400
+      );
     }
 
     const emailVerify = await userRepository.find({ where: { email } });
 
     if (Object.keys(emailVerify).length !== 0) {
-      throw new ApiError("Email já existente", 400);
+      throw new ApiError(
+        "Email já existente. Por favor, preencha com um email válido.",
+        409
+      );
     }
 
     const passwordHashed = await bcrypt.hash(password, 10);
