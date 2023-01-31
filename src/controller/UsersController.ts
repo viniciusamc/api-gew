@@ -1,12 +1,32 @@
 import { Request, Response } from "express";
-import { AppError } from "../utils/AppError";
+// import { body, validationResult } from "express-validator";
+// import { hash } from "bcrypt";
 
 class UsersController {
   async create(req: Request, res: Response) {
-    const { name, email, birth, cep, address, city, state, password } =
-      req.body;
+    const {
+      name,
+      email,
+      birth,
+      cep,
+      address,
+      city,
+      state,
+      password,
+      confirmPassword,
+    } = req.body;
 
-    return res.json({ name, password });
+    return res.json({
+      name,
+      email,
+      birth,
+      cep,
+      address,
+      city,
+      state,
+      password,
+      confirmPassword,
+    });
   }
 }
 
