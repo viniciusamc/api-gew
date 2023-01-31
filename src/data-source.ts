@@ -1,17 +1,19 @@
-import "reflect-metadata";
 import { DataSource } from "typeorm";
-import { User } from "./entity/User";
+import "dotenv/config";
+import "reflect-metadata";
+
+const port = process.env.DB_PORT as number | undefined;
 
 export const AppDataSource = new DataSource({
   type: "mysql",
-  host: "localhost",
-  port: 3306,
-  username: "test",
-  password: "test",
-  database: "gew",
+  host: process.env.DB_HOST,
+  port: port,
+  username: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
   synchronize: true,
-  logging: false,
-  entities: [User],
-  migrations: [],
+  logging: true,
+  entities: [`${__dirname}/**/entities/*.{ts,js}`],
   subscribers: [],
+  migrations: [`${__dirname}/**/database/migrations/*.{ts,js}`],
 });
