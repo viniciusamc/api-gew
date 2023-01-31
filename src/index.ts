@@ -2,7 +2,7 @@ import express from "express";
 import "express-async-errors";
 import { AppDataSource } from "./data-source";
 const routes = require("./routes/index");
-
+const axios = require("axios");
 AppDataSource.initialize().then(() => {
   const app = express();
 
